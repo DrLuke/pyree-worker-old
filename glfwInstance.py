@@ -27,7 +27,8 @@ class GlfwInstance():
             self.time = glfw.get_time()
             self.deltatime = 0.01    # Just some good starting value that isn't 0
 
-            self.frameBuffer = None
+            self.fbo = None
+            self.fbotexture = None
 
     def createWindow(self):
         self.window = glfw.create_window(500, 500, "Pyree Worker （´・ω・ `)", None, None)
@@ -91,19 +92,13 @@ class GlfwInstance():
         self.runtime.time = glfw.get_time()
 
         for program in self.programs:
-            program.render()
+            program.render(self.runtime, {})
 
         glfw.swap_buffers(self.window)
 
 class PyreeProgram:
     """Program that is run on workers and hopefully draws pretty things"""
-    def __init__(self):
-        pass
-
-    def __del__(self):
-        pass
-
-    def render(self, runtime: GlfwInstance.runtime, resources: list):
+    def render(self, runtime: GlfwInstance.runtime, textures: list):
         pass
 
 
