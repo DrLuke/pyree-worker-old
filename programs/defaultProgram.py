@@ -262,7 +262,11 @@ class DefaultProgram(PyreeProgram):
             # Uniforms
             uniformLoc = glGetUniformLocation(buf[0], "t")
             if not uniformLoc == -1:
-                glUniform2f(uniformLoc, runtime.time, runtime.deltatime)
+                glUniform1f(uniformLoc, runtime.time)
+
+            uniformLoc = glGetUniformLocation(buf[0], "dt")
+            if not uniformLoc == -1:
+                glUniform1f(uniformLoc, runtime.deltatime)
 
             uniformLoc = glGetUniformLocation(buf[0], "res")
             if not uniformLoc == -1:
